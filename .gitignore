@@ -1,1 +1,13 @@
 .env
+
+# volumes
+data-nginx
+letsencrypt
+
+node_modules
+
+.DS_Store
+
+# ide files
+.idea
+.vscode
