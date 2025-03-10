@@ -3,6 +3,8 @@ services:
   frontend:
     image: 'ghcr.io/cleanwalk-org-asso/cleanwalk-org-v2/frontend:latest'
     restart: always
+    env_file:
+      - ./front/.env
     networks:
       - my_network
 
