@@ -16,18 +16,18 @@ services:
     networks:
       - my_network
 
-  nginx-proxy-manager:
-    image: 'jc21/nginx-proxy-manager:latest'
-    restart: unless-stopped
-    ports:
-      - '80:80'
-      - '81:81'
-      - '443:443'
-    volumes:
-      - ./data-nginx:/data
-      - ./letsencrypt:/etc/letsencrypt
-    networks:
-      - my_network
+  # nginx-proxy-manager:
+  #   image: 'jc21/nginx-proxy-manager:latest'
+  #   restart: unless-stopped
+  #   ports:
+  #     - '80:80'
+  #     - '81:81'
+  #     - '443:443'
+  #   volumes:
+  #     - ./data-nginx:/data
+  #     - ./letsencrypt:/etc/letsencrypt
+  #   networks:
+  #     - my_network
 
 networks:
   my_network:
