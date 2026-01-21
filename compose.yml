@@ -1,0 +1,59 @@
+services:
+  frontend:
+    image: 'ghcr.io/cleanwalk-org-asso/cleanwalk-org-v2/frontend:latest'
+    depends_on:
+      - backend
+    labels:
+      - "traefik.enable=true"
+      - "traefik.docker.network=proxy"
+      - "traefik.http.routers.front.rule=Host(`tiermaster.app`)"
+      - "traefik.http.routers.front.entrypoints=websecure"
+      - "traefik.http.routers.front.tls.certresolver=letsencrypt"
+      - "traefik.http.services.front.loadbalancer.server.port=80"
+      - "traefik.http.services.front.loadbalancer.server.scheme=http"
+    networks:
+      - proxy
+      - internal
+    restart: always
+
+  backend:
+    image: ghcr.io/cleanwalk-org-asso/cleanwalk-org-v2/api:latest
+    env_file:
+      - ./backend/.env
+    depends_on:
+      database:
+        condition: service_healthy
+    labels:
+      - "traefik.enable=true"
+      - "traefik.docker.network=proxy"
+      - "traefik.http.routers.api.rule=Host(`api.tiermaster.app`)"
+      - "traefik.http.routers.api.entrypoints=websecure"
+      - "traefik.http.routers.api.tls.certresolver=letsencrypt"
+      - "traefik.http.services.api.loadbalancer.server.port=3000"
+      - "traefik.http.services.api.loadbalancer.server.scheme=http"
+    networks:
+      - proxy
+      - internal
+    restart: always
+  mongo:
+    image: mongo:latest
+    container_name: mongo
+    restart: unless-stopped
+    ports:
+      - "27017:27017"
+    environment:
+      MONGO_INITDB_ROOT_USERNAME: admin
+      MONGO_INITDB_ROOT_PASSWORD: tiermaster!
+    volumes:
+      - mongo_data:/data/db
+    networks:
+      - tiermaster_network
+
+volumes:
+  mongo_data:
+
+networks:
+  proxy:
+    external: true
+  internal:
+    driver: bridge
