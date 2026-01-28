@@ -16,10 +16,10 @@ services:
       - internal
     restart: always
 
-  backend:
+  api:
     image: ghcr.io/cleanwalk-org-asso/cleanwalk-org-v2/api:latest
     env_file:
-      - ./backend/.env
+      - ./api/.env
     labels:
       - "traefik.enable=true"
       - "traefik.docker.network=proxy"
