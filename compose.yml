@@ -2,7 +2,7 @@ services:
   frontend:
     image: 'ghcr.io/cleanwalk-org-asso/cleanwalk-org-v2/frontend:latest'
     depends_on:
-      - backend
+      - api
     labels:
       - "traefik.enable=true"
       - "traefik.docker.network=proxy"
