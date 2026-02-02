@@ -37,6 +37,12 @@ services:
       - internal
     restart: always
 
+  redis:
+    image: redis:8-alpine
+    networks:
+      - internal
+    restart: always
+
 volumes:
   mongo_data:
 
