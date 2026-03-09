@@ -37,21 +37,22 @@ services:
       - internal
     restart: always
 
-    database:
-      image: postgres:18-alpine
-      env_file:
-        - ./database/.env
-      volumes:
-        - db_data:/var/lib/postgresql/data
-      healthcheck:
-        test: ["CMD-SHELL", "pg_isready -U $$POSTGRES_USER -d $$POSTGRES_DB"]
-        interval: 3s
-        timeout: 3s
-        retries: 5
-        start_period: 5s
-      networks:
-        - internal
-      restart: always
+
+  database:
+    image: postgres:18-alpine
+    env_file:
+      - ./database/.env
+    volumes:
+      - db_data:/var/lib/postgresql/data
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U $$POSTGRES_USER -d $$POSTGRES_DB"]
+      interval: 3s
+      timeout: 3s
+      retries: 5
+      start_period: 5s
+    networks:
+      - internal
+    restart: always
 
 
   redis:
