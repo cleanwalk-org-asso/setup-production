@@ -7,11 +7,11 @@ services:
       - "traefik.enable=true"
       - "traefik.docker.network=proxy"
 
-      - "traefik.http.routers.cleanwalk-front.rule=Host(`cleanwalk.online`) || Host(`www.cleanwalk.online`)"
-      - "traefik.http.routers.cleanwalk-front.entrypoints=websecure"
-      - "traefik.http.routers.cleanwalk-front.tls.certresolver=letsencrypt"
-      - "traefik.http.services.cleanwalk-front.loadbalancer.server.port=80"
-      - "traefik.http.services.cleanwalk-front.loadbalancer.server.scheme=http"
+      - "traefik.http.routers.cleanwalk-front-recette.rule=Host(`cleanwalk.online`) || Host(`www.cleanwalk.online`)"
+      - "traefik.http.routers.cleanwalk-front-recette.entrypoints=websecure"
+      - "traefik.http.routers.cleanwalk-front-recette.tls.certresolver=letsencrypt"
+      - "traefik.http.services.cleanwalk-front-recette.loadbalancer.server.port=80"
+      - "traefik.http.services.cleanwalk-front-recette.loadbalancer.server.scheme=http"
 
     networks:
       - proxy
@@ -26,11 +26,11 @@ services:
       - "traefik.enable=true"
       - "traefik.docker.network=proxy"
 
-      - "traefik.http.routers.cleanwalk-api.rule=Host(`api.cleanwalk.online`)"
-      - "traefik.http.routers.cleanwalk-api.entrypoints=websecure"
-      - "traefik.http.routers.cleanwalk-api.tls.certresolver=letsencrypt"
-      - "traefik.http.services.cleanwalk-api.loadbalancer.server.port=8080"
-      - "traefik.http.services.cleanwalk-api.loadbalancer.server.scheme=http"
+      - "traefik.http.routers.cleanwalk-api-recette.rule=Host(`api.cleanwalk.online`)"
+      - "traefik.http.routers.cleanwalk-api-recette.entrypoints=websecure"
+      - "traefik.http.routers.cleanwalk-api-recette.tls.certresolver=letsencrypt"
+      - "traefik.http.services.cleanwalk-api-recette.loadbalancer.server.port=8080"
+      - "traefik.http.services.cleanwalk-api-recette.loadbalancer.server.scheme=http"
 
     networks:
       - proxy
