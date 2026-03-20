@@ -7,7 +7,7 @@ services:
       - "traefik.enable=true"
       - "traefik.docker.network=proxy"
 
-      - "traefik.http.routers.cleanwalk-front-recette.rule=Host(`cleanwalk.online`) || Host(`www.cleanwalk.online`)"
+      - "traefik.http.routers.cleanwalk-front-recette.rule=Host(`recette.cleanwalk.online`)"
       - "traefik.http.routers.cleanwalk-front-recette.entrypoints=websecure"
       - "traefik.http.routers.cleanwalk-front-recette.tls.certresolver=letsencrypt"
       - "traefik.http.services.cleanwalk-front-recette.loadbalancer.server.port=80"
