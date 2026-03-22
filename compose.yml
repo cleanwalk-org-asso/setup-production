@@ -61,6 +61,15 @@ services:
       - internal
     restart: always
 
+  db_backup:
+    image: ghcr.io/cleanwalk-org-asso/db-backup-cw/backup:latest
+    profiles:
+      - db_backup
+    env_file:
+      - ./db_backup/.env
+    networks:
+      - internal
+
 volumes:
   db_data:
 
